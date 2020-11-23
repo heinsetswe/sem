@@ -190,7 +190,14 @@ public class App
         App a = new App();
 
         // Connect to database
-        a.connect("localhost:33060");
+        if (args.length < 1)
+        {
+            a.connect("localhost:3306");
+        }
+        else
+        {
+            a.connect(args[0]);
+        }
 
         // Extract employee salary information
         ArrayList<Employee> employees = a.getAllSalaries();
@@ -199,7 +206,7 @@ public class App
         // a.printSalaries(employees);
 
         // Test the size of the returned data - should be 240124
-        System.out.println(employees.size());
+        // System.out.println(employees.size());
 
         // Disconnect from database
         a.disconnect();
